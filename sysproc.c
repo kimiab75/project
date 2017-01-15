@@ -50,7 +50,11 @@ sys_getPerformanceData(void)
   return proc->getPerformanceData;
 }
 
-
+int
+sys_nice(void)
+{
+  return proc->nice;
+}
 
 
 int

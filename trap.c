@@ -50,7 +50,13 @@ trap(struct trapframe *tf)
   case T_IRQ0 + IRQ_TIMER:
     if(cpunum() == 0){
       acquire(&tickslock);
+	if (num == QUANTA){
       ticks++;
+	num = 0;
+}
+else{
+num++;
+}
       wakeup(&ticks);
       release(&tickslock);
 	if (proc)
