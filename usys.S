@@ -30,5 +30,9 @@ SYSCALL(getppid)
 SYSCALL(sbrk)
 SYSCALL(sleep)
 SYSCALL(uptime)
+<<<<<<< HEAD
 SYSCALL(wait2)
+=======
+SYSCALL(getPerformanceData)
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 SYSCALL(nice)

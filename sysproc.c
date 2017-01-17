@@ -44,6 +44,7 @@ sys_getpid(void)
   return proc->pid;
 }
 
+<<<<<<< HEAD
 int sys_wait2(void)
 {
   int *wtime;
@@ -56,12 +57,22 @@ int sys_wait2(void)
     return -1;}
 
   return wait2(wtime,rtime);
+=======
+int
+sys_getPerformanceData(void)
+{
+  return proc->getPerformanceData;
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 }
 
 int
 sys_nice(void)
 {
+<<<<<<< HEAD
   return nice();
+=======
+  return proc->nice;
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 }
 
 

@@ -13,7 +13,11 @@ struct gatedesc idt[256];
 extern uint vectors[];  // in vectors.S: array of 256 entry pointers
 struct spinlock tickslock;
 uint ticks;
+<<<<<<< HEAD
 int num=QUANTA;
+=======
+
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 void
 tvinit(void)
 {
@@ -33,7 +37,11 @@ idtinit(void)
 }
 
 //PAGEBREAK: 41
+<<<<<<< HEAD
 /*void
+=======
+void
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 trap(struct trapframe *tf)
 {
   if(tf->trapno == T_SYSCALL){
@@ -64,6 +72,7 @@ num++;
 	if(proc->state==RUNNING)
 	rtime++;
 	}
+<<<<<<< HEAD
 	   }*/
 void
 trap(struct trapframe *tf)
@@ -103,6 +112,9 @@ trap(struct trapframe *tf)
       release(&tickslock);
 
     }
+=======
+	   }
+>>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
     lapiceoi();
     break;
   case T_IRQ0 + IRQ_IDE:
