@@ -7,6 +7,8 @@
 #include "proc.h"
 #include "spinlock.h"
 
+#define null 0
+
 struct {
 	
   struct spinlock lock;
@@ -36,11 +38,7 @@ static struct proc*
 allocproc(void)
 {
   struct proc *p;
-<<<<<<< HEAD
 	
-=======
-	proc ->ctime=ticks;
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
   char *sp;
 
   acquire(&ptable.lock);
@@ -55,12 +53,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
-<<<<<<< HEAD
 //  p->priority = 2;
-=======
-p->priority = 0;
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
   release(&ptable.lock);
 
   // Allocate kernel stack.
@@ -83,14 +76,10 @@ p->priority = 0;
   p->context = (struct context*)sp;
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
-<<<<<<< HEAD
 p->ctime=ticks;
 p->etime=0;
 p->rtime=0;
 p->priority=2;
-=======
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
   return p;
 }
 
@@ -298,84 +287,47 @@ wait(void)
 void
 scheduler(void)
 {
-<<<<<<< HEAD
  struct proc *p;
  
 
  for(;;){
-=======
-  struct proc *p;
-	int num=QUANTA; 
-	int formula=rtime/(ticks-ctime);
-  for(;;){
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
     // Enable interrupts on this processor.
     sti();
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
 
-<<<<<<< HEAD
 //****************************************************************************************
 #ifdef RR
-=======
-
-
-	#ifdef RR
-//	if(num==QUANTA || proc->etime = 1 ){ //chek mikone k aya farayand t shode va zamane ezafi baghi moooned ya na & ya in k khode quanta t shoe bashe  
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
       proc = p;
       switchuvm(p);
       p->state = RUNNING;
-<<<<<<< HEAD
 
       swtch(&cpu->scheduler, p->context);
       switchkvm();
 
-=======
-      swtch(&cpu->scheduler, p->context);
-      switchkvm();
-	num=0;
-	break;
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       proc = 0;
     }
-<<<<<<< HEAD
 #else
-=======
-					}
-/*else{ //halatie k ejraye farayndtoolani shode
-num++;
-}*/
-#endif
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 
 //...........................................................
 
 
 #ifdef FRR
-<<<<<<< HEAD
 
-=======
-	//if(num==QUANTA || proc->etime = 1 ){ //chek mikone k aya farayand t shode va zamane ezafi baghi moooned ya na & ya in k khode quanta t shoe bashe  
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
   struct proc *minCtime=null;
 for(p=ptable.proc; p < &ptable.proc[NPROC]; p++){
   if(p->state != RUNNABLE){
@@ -385,11 +337,7 @@ minCtime=p;
 }
 else{
 minCtime=p;
-<<<<<<< HEAD
 
-=======
-}
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 }
 }
 if(minCtime != null){
@@ -399,31 +347,20 @@ switchuvm(p);
  p->state = RUNNING;
       swtch(&cpu->scheduler, p->context);
       switchkvm();
-<<<<<<< HEAD
 proc = 0;
 }
 }
 
 #else
-=======
-      num = 0;
-}
-
-/*else{
-num++;
-}*/
-#endif
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 
 //.................................................................
 	
 #ifdef GRT
-<<<<<<< HEAD
    struct proc *minminCtime=null;
 for(p=ptable.proc; p < &ptable.proc[NPROC]; p++){
   if(p->state != RUNNABLE){
 if(minminCtime != null){
- formula= (int) ((p->rtime)/((ticks)-(p->ctime)));
+ p->formula= (int) ((p->rtime)/((ticks)-(p->ctime)));
 if(p->formula < minminCtime->formula)
 minminCtime=p;
 }
@@ -434,29 +371,11 @@ minminCtime=p;
 }
 if(minminCtime != null){
 p= minminCtime;
-=======
-//if(num==QUANTA || proc->etime = 1 ){ //chek mikone k aya farayand t shode va zamane ezafi baghi moooned ya na & ya in k khode quanta t shoe bashe  
-  
-for(p=ptable.proc; p < &ptable.proc[NPROC]; p++){
-  if(p->state != RUNNABLE){
-if(minCtime != null){
-if(p->formula < minCtime->formula)
-minCtime=p;
-}
-else{
-minCtime=p;
-}
-}
-}
-if(minCtime != null){
-p= minCtime;
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 proc=p;
 switchuvm(p);
  p->state = RUNNING;
       swtch(&cpu->scheduler, p->context);
       switchkvm();
-<<<<<<< HEAD
   
 }
 
@@ -466,19 +385,6 @@ switchuvm(p);
 
 #ifdef MLQ
  
-=======
-      num = 0;
-}
-
-/*else{
-num++;
-}*/
-#endif
-
-//................................................................
-
-#ifdef 3Q
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 int counter0 =0; //counter gozashtim k tedad olaviat haro beshmore
 int counter1 =0;
 int counter2 =0;
@@ -503,7 +409,6 @@ counter0 = counter0 +1;
 
 if (counter2 != 0){ //siasate guaranteed ro piade sazi kon
 ////////////////////////////////// guaranteed
-<<<<<<< HEAD
    struct proc *minminCtime=null;
 for(p=ptable.proc; p < &ptable.proc[NPROC]; p++){
   if(p->state != RUNNABLE){
@@ -519,35 +424,14 @@ minminCtime=p;
 }
 if(minminCtime != null){
 p= minminCtime;
-=======
-for(p=ptable.proc; p < &ptable.proc[NPROC]; p++){
-  if(p->state != RUNNABLE && p->priority == 2){
-if(minCtime != null){
-if(p->formula < minCtime->formula)
-minCtime=p;
-}
-else{
-minCtime=p;
-}
-}
-}
-if(minCtime != null){
-p= minCtime;
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 proc=p;
 switchuvm(p);
  p->state = RUNNING;
       swtch(&cpu->scheduler, p->context);
       switchkvm();
-<<<<<<< HEAD
   
 }
 counter2 = counter2 -1;
-=======
-      num = 0;
-}
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 //////////////////////////////
 }
 
@@ -575,14 +459,9 @@ switchuvm(p);
  p->state = RUNNING;
       swtch(&cpu->scheduler, p->context);
       switchkvm();
-<<<<<<< HEAD
 
 }
 counter1 = counter1 -1;
-=======
-      num = 0;
-}
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 ////////////////////////////////////
 
 }
@@ -605,17 +484,12 @@ if (counter0 != 0){ //siasate rr baraye payini ha
       p->state = RUNNING;
       swtch(&cpu->scheduler, p->context);
       switchkvm();
-<<<<<<< HEAD
 	//num=0;
-=======
-	num=0;
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 	break;
       // Process is done running for now.
       // It should have changed its p->state before coming back.
       proc = 0;
     }
-<<<<<<< HEAD
 counter0 = counter0 -1;
 ////////////////////////////////////////////////////
 
@@ -625,14 +499,6 @@ counter0 = counter0 -1;
 #endif
 #endif
 #endif
-=======
-////////////////////////////////////////////////////
-
-
-} 
-#endif
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 //...................................................................
 
     release(&ptable.lock);
@@ -778,12 +644,7 @@ kill(int pid)
   return -1;
 }
 
-<<<<<<< HEAD
 int wait2(int *wtime,int *rtime)//ba wait ykiye vali  time haro ghabl az pak kardan bayad set konim.
-=======
-int
-getPerformanceData(int *wtime, int *rtime)
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 {
   struct proc *p;
   int havekids, pid;
@@ -868,7 +729,6 @@ procdump(void)
 }
 
 // decrease priority for the current running process
-<<<<<<< HEAD
 int nice(void)
 {
 	if(proc){
@@ -881,46 +741,4 @@ int nice(void)
   return -1;
 }
 
-=======
-int
-nice(void)
-{
-
-  // Set priority for parent process
-  proc->priority = p->priority - 1; //motefavet: har dafe 1 vahed az priority kam mikonim
-
-  // Lookup for children processes
-  struct proc *p;
-
-  acquire(&ptable.lock);
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if((p->pid == pid) || (p->parent->pid == pid)){ //baraye har farayandi ag bache dare proiritisho barabare khodesh bezar
-      p->priority = proc->priority;
-      return 0;
-    }
-  }
-  release(&ptable.lock);
-  return -1;
-}
-
-int
-getpriority(void)
-{
-  return proc->priority;
-}
-
-int
-setpriority(int pid) //motefavet: har farayande k ijad mishe prioritishe
-{
-  acquire(&ptable.lock);
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if((p->pid == pid) || (p->parent->pid == pid)){
-      p->priority = 2;
-      return 0;
-    }
-  }
-  release(&ptable.lock);
-  return -1;
-}
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 

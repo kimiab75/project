@@ -41,11 +41,7 @@ waittest(void)
       foo();
       exit();      
     }
-<<<<<<< HEAD
     wait2(&wTime,&rTime);
-=======
-    getPerformanceData(&wTime,&rTime);
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
      printf(1, "hi \n");
     printf(1, "wTime: %d rTime: %d \n",wTime,rTime);
 

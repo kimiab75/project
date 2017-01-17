@@ -10,9 +10,11 @@ int i;
 int cid[30];
 int j;
 int w;
+int t;
 
 for (i=0; i < 30 ; i++ ){
   child_pid[i] = fork();
+if (child_pid[i] ==0){
   cid[i] = getpid();
   
   if (cid[i] % 3 == 0){
@@ -25,14 +27,17 @@ for (i=0; i < 30 ; i++ ){
     }
   }
   
-  if (child_pid[i] != 0){ //lazem nis in shart chon alan tooye halghe yi hastim k hame farzandan
+ ///lazem nis in shart chon alan tooye halghe yi hastim k hame farzandan
     
-  for (w=0 ; w< 500 ; w++){
+  for (w=0 ; w<10; w++)
     printf (1, "pid is %d \n" ,getpid());
-  }
+ 
   exit();
   }
-
 }
+for(t=0;t<30;t++)
+wait();
+
+
 return 0;
 }

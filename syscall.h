@@ -20,12 +20,7 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
-<<<<<<< HEAD
 #define SYS_getppid 22
 #define SYS_wait2 23
-=======
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															#define SYS_getppid 22
-#define SYS_getPerformanceData 23
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 #define SYS_nice 24
 

@@ -24,11 +24,7 @@ int getppid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
-<<<<<<< HEAD
 int wait2(int *wtime,int *rtime);
-=======
-int getPerformanceData(int*,int*);
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 int nice(void);
 
 // ulib.c

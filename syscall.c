@@ -99,11 +99,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-<<<<<<< HEAD
 extern int sys_wait2(void);
-=======
-extern int sys_getPerformanceData(void);
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 extern int sys_nice(void);
 
 static int (*syscalls[])(void) = {
@@ -129,14 +125,8 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-<<<<<<< HEAD
 [SYS_wait2]   sys_wait2,
 [SYS_nice]   sys_nice,
-=======
-[SYS_getPerformanceData]   sys_getPerformanceData,
-[SYS_nice]   sys_nice,
-
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 };
 
 void

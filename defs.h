@@ -114,11 +114,8 @@ void            sched(void);
 void            sleep(void*, struct spinlock*);
 void            userinit(void);
 int             wait(void);
-<<<<<<< HEAD
 int             wait2(int*,int*);
 int             nice(void);
-=======
->>>>>>> fe37ccd5fa72df5b636d8975c75f9d2cc109db49
 void            wakeup(void*);
 void            yield(void);
 
